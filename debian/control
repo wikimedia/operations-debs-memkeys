@@ -1,0 +1,19 @@
+Source: memkeys
+Section: net
+Priority: optional
+Maintainer: Faidon Liambotis <faidon@wikimedia.org>
+Build-Depends: debhelper (>= 9), dh-autoreconf,
+  libncurses5-dev,
+  libpcre3-dev,
+  libpcap-dev
+Standards-Version: 3.9.5
+Homepage: https://github.com/tumblr/memkeys
+
+Package: memkeys
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: show memcache key usage in realtime
+ memkeys passively sniffs the network traffic passing through a server's
+ network interface and tracks keys corresponding to memcache get commands.  The
+ output is presented on the terminal in a manner similar to "top" and allows
+ sorting by bandwidth, total calls, req/sec and size.
