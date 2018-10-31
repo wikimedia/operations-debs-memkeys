@@ -2,12 +2,13 @@ Source: memkeys
 Section: net
 Priority: optional
 Maintainer: Faidon Liambotis <faidon@wikimedia.org>
+Uploaders: Luca Toscano <ltoscano@wikimedia.org>
 Build-Depends: debhelper (>= 9), dh-autoreconf,
   libncurses5-dev,
   libpcre3-dev,
   libpcap-dev
-Standards-Version: 3.9.5
-Homepage: https://github.com/tumblr/memkeys
+Standards-Version: 3.9.8
+Homepage: https://github.com/bmatheny/memkeys.git
 
 Package: memkeys
 Architecture: any

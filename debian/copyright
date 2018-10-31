@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: memkeys
-Source: https://github.com/tumblr/memkeys
+Source: https://github.com/bmatheny/memkeys.git
 
 Files: *
 Copyright: 2013, Tumblr,
