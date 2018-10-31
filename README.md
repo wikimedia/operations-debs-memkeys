@@ -7,6 +7,8 @@ I found that under load mctop would drop between 50 and 75 percent of packets.
 Under the same load memkeys will typically drop less than 3 percent of packets.
 This is on a machine saturating a 1Gb network link.
 
+Build Status: [![Build Status](https://travis-ci.org/bmatheny/memkeys.png?branch=master)](https://travis-ci.org/bmatheny/memkeys)
+
 ## Command line options
 
     Usage: memkeys -i NIC [options]
@@ -33,18 +35,34 @@ large.
 
     memkeys -i eth0 -d 10.0 -l /tmp/memkeys.log
 
+If you are running memkeys on a proxy you may want to use `-i lo` to listen on
+localhost.
+
 ## Screenshot
 
 ![Screenshot](https://raw.github.com/wiki/bmatheny/memkeys/misc/screenshot.png)
 
 ## Development/Build
 
+Build is based on autoconf.
+
 Install gperftools and gperftools-devel if you want to build with
 `--enable-profiling`. You will typically want to configure with
 `--enable-debug`, and possibly with `--enable-development`. The latter two
-options will enable additional error logging.
+options will enable additional error logging. If you are actually doing
+development you should definitely add `--enable-development` as doing so will
+add some additional compiler flags to help catch errors.
 
 You will need libpcap-devel, libpcrecpp, and libncurses-devel.
+
+On Ubuntu with all packages:
+
+    sudo apt-get install autoconf libpcap-dev libpcre3-dev and lib32ncurses5-dev google-perftools libgoogle-perftools-dev
+    ./build-eng/autogen.sh
+    make
+    make check
+
+The memkeys should then be present in /usr/local/bin. 
 
 memkeys was developed on CentOS 5.8 with the following software tools:
 

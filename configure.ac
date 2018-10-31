@@ -1,10 +1,10 @@
 # Initialize autoconf
-AC_PREREQ([2.68])
-AC_INIT([memkeys], [0.1], [bmatheny@mobocracy.net])
+AC_INIT([memkeys], [0.2], [bmatheny@mobocracy.net])
+AC_PREREQ([2.63])
 AC_CONFIG_SRCDIR([src/main.cpp])
-AC_CONFIG_AUX_DIR([config])
-AC_CONFIG_HEADERS([mconfig.h:mconfig.h.in])
 AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_AUX_DIR([build-aux])
+AC_CONFIG_HEADERS([build-aux/mconfig.h:build-aux/mconfig.h.in])
 
 # Initialize automake
 AM_INIT_AUTOMAKE([1.9.6 foreign])
@@ -166,6 +166,11 @@ AM_CONDITIONAL([DEVELOPMENT], [test x$development = xtrue])
 # Check functions
 AC_CHECK_FUNCS([getopt_long], ,
                [AC_MSG_ERROR([no getopt_long function found])])
+
+# Build gtest
+export CFLAGS
+export CXXFLAGS
+AC_CONFIG_SUBDIRS([gtest])
 
 AC_CONFIG_FILES([Makefile
                  src/Makefile])

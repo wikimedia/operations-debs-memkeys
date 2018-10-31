@@ -1,9 +1,14 @@
 #ifndef _LOGGING_RECORD_H
 #define _LOGGING_RECORD_H
 
+#include "logging/level.h"
+
 #include <string>
 #include <stdexcept>
-#include "logging/level.h"
+
+extern "C" {
+#include <sys/time.h>
+}
 
 namespace mckeys {
 
@@ -42,6 +47,7 @@ class Record
   bool hasThrown() const;
 
   std::string getTimestamp() const;
+  std::string getTimestamp(struct timeval ts) const;
 
  private:
   std::string _filename;
