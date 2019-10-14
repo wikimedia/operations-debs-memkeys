@@ -1,3 +1,9 @@
+memkeys (20181031-2) UNRELEASED; urgency=low
+
+  * Add patch patches/fix_pcap_live to fix run time segfaults (T223863)
+
+ -- Luca Toscano <ltoscano@wikimedia.org>  Mon, 14 Oct 2019 18:28:39 +0000
+
 memkeys (20181031-1) UNRELEASED; urgency=low
 
   * Switch upstream to https://github.com/bmatheny/memkeys.git

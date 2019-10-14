@@ -1,0 +1,28 @@
+When building memkeys on a OS like Debian Stretch or Debian Buster,
+a segfaults happen due to a corruption of the dev variable (either
+the pointer itself or its content). Using a std::string like done
+elsewhere in the code avoids the segfault.
+
+Context in https://phabricator.wikimedia.org/T223863
+---
+ src/net/pcap_live.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/net/pcap_live.cpp b/src/net/pcap_live.cpp
+index 6bf7229..62fe77d 100644
+--- a/src/net/pcap_live.cpp
++++ b/src/net/pcap_live.cpp
+@@ -34,9 +34,9 @@ void PcapLive::open()
+   if (!state.checkAndSet(state_NEW, state_STARTING)) {
+     logger->warning(CONTEXT, "Device already open");
+   }
+-  const char *dev = getInterfaceC();
+-  logger->info(CONTEXT, "Opening device %s for capture", dev);
+-  handle = pcap_open_live(dev,                      /* device to capture on */
++  string dev = getInterface();
++  logger->info(CONTEXT, "Opening device %s for capture", dev.c_str());
++  handle = pcap_open_live(dev.c_str(),              /* device to capture on */
+                           config->getSnapLength(),  /* how many bytes per packet */
+                           config->isPromiscuous(),  /* promiscuous */
+                           config->getReadTimeout(), /* read timeout, in ms */
+--
